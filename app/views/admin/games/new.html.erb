@@ -1,0 +1,29 @@
+<%= render 'layouts/admin_header' %>
+
+<h1>ゲーム登録</h1>
+
+<%= form_with model: [:admin,@game] do |f| %>
+     <h4>タイトル</h4>
+        <%= f.text_field :title %>
+        
+     <h4>パッケージ</h4>
+        <%= f.file_field :package_image, accept: "image/*" %>
+
+     <h4>メーカー</h4>
+        <%= f.text_field :maker %>
+
+     <h4>発売日</h4>
+        <%= f.date_field :release_date %>
+        
+     <h4>対応機種</h4>
+        <%= f.text_field :game_hard %>
+        
+     <h4>ジャンル</h4>
+        <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "--選択してください--" %>
+     
+     <h4>AmazonURL</h4>
+        <%= f.text_field :amazon_url %>
+        
+  <h4><%= f.submit '登録' %></h4>
+
+<% end %>

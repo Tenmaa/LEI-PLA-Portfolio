@@ -1,0 +1,31 @@
+<!-- 管理者用header部分テンプレートファイル -->
+
+       
+            <!-- 管理者がログインしている場合のヘッダーリスト -->
+            <li>
+              <%= link_to admin_games_path, class: "nav-link text-dark" do %>
+                <span>ゲーム一覧</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_path, class: "nav-link text-dark" do %>
+                <span>ユーザー一覧</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_path, class: "nav-link text-dark" do %>
+                <span>ゲームハード一覧</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_genres_path, class: "nav-link text-dark" do %>
+                <span>ジャンル一覧</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark" do %>
+                <span>ログアウト</span>
+              <% end %>
+            </li>
+          </ul>
+        </div>

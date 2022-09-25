@@ -1,0 +1,16 @@
+<%= render 'layouts/admin_header' %>
+
+
+<h4>ゲーム一覧</h4>
+
+<table>
+　  <% @games.each do |genre| %>
+     <tr>
+        <td></td>
+        <td></td>
+
+     </tr>
+    <% end %>
+</table>
+
+<a href="/admin/games/new">ゲーム追加</a>

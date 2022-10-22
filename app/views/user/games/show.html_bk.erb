@@ -1,0 +1,105 @@
+<%= render 'layouts/user_header' %>
+<% @game.each do |game| %>
+<h2>タイトル</h2>
+<p>
+  <%= game.title %>
+</p>
+
+<p><%#= image_tag @game.package_image, size: '320x320'   %></p>
+
+<h2>メーカー</h2>
+<p><%= game.maker %></p>
+
+<h2>発売日</h2>
+<p><%= game.release_date %></p>
+
+<h2>対応機種</h2>
+<p>
+　<% game.game_hards.each do |game_hard| %>
+    <%= game_hard.hard_name %>
+  <% end %>
+</p>
+
+<h2>ジャンル</h2>
+<p><%= game.genre.genre_name %></p>
+
+
+
+
+<h2>レビュー・評価・感想</h2>
+<h3>レビュー投稿<h3>
+    <%= form_with model: @new_game,url: user_game_comments_path(game) do |f| %>
+  <h4>コメント</h4>
+    <%= f.text_field :comment %>
+    
+  <h4>おすすめBGM</h4>
+    <%= f.text_field :recommend_bgm %>
+    
+
+    <div class="field" id="star">
+  <h4><%= f.label :evaluation, "星評価：" %></h4>
+  <%= f.hidden_field :evaluation, id: :review_star %>
+  
+  </div>
+  
+
+  <%= f.submit '登録' %>
+  <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'comment[evaluation]',   
+      half: true,   
+    });
+    
+  </script>
+    <% end %>
+    
+    
+<table>
+  <tbody>
+    <% @game.comments.each do |comment| %>
+    <tr>
+      <td>
+        <% if comment.user.profile_image.attached? %>
+          <%= image_tag comment.user.profile_image, size: '100x100'  %>
+        <% end %>
+      </td>
+      <td>
+        <% if comment.user %>
+          <%= comment.user.name %>
+        <% end %>
+      </td>
+      <td><h4>コメント</h4><%= comment.comment %></td>
+      <td><h4>おすすめBGM</h4><%= comment.recommend_bgm %></td>
+      <td>
+      <div class="relative-comment-evaluation">
+  <h4>評価</h4>
+  <span id="star-rate-<%= comment.id %>"></span>
+  <script>
+    $('#star-rate-<%= comment.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,   
+      readOnly: true,   
+      score: <%= comment.evaluation %>,    
+    });
+  </script>
+  <%= comment.evaluation %>
+</div>
+</td>
+
+      <td>
+        <% if comment.user == current_user %>
+        <%= link_to "削除", user_game_comment_path(@game, comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

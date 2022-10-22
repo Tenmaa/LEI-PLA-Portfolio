@@ -1,0 +1,17 @@
+<%= render 'layouts/admin_header' %>
+
+<h4>ゲームハード一覧</h4>
+
+<table>
+  <th>ID</th>
+  <th>NAME</th>
+  <% @game_hards.each do |game_hard| %>
+    <tr>
+      <td><%= game_hard.id %></td>
+      <td><%= game_hard.hard_name %></td>
+      <td><%= link_to "削除", admin_game_hard_path(game_hard), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<a href="/admin/game_hards/new">ジャンル追加</a>

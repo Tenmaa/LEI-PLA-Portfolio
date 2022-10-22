@@ -8,7 +8,7 @@ class Admin::GamesController < ApplicationController
  end
  
  def show
-  
+     @game = Game.find(params[:id])
  end
  
  def create
@@ -18,13 +18,15 @@ class Admin::GamesController < ApplicationController
  end
  
  def destroy
-  
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to admin_games_path
  end
  
  private
 
 
  def game_params
-    params.require(:game).permit(:genre_id, :title, :package_image, :maker, :release_date, :game_hard, :amazon_url)
+    params.require(:game).permit(:genre_id, :title, :package_image, :maker, :release_date, :amazon_url, game_hard_ids: [] )
  end
 end

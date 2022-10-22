@@ -1,0 +1,74 @@
+<%= render 'layouts/user_header' %>
+
+<div class="category bg-success">アドベンチャー</div>
+  <% @games_adv.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">RPG</div>
+  <% @games_rpg.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">アクション</div>
+  <% @games_act.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">レース</div>
+  <% @games_rce.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">パズル</div>
+  <% @games_pzl.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">シミュレーション</div>
+  <% @games_sim.each do |game| %>
+    <div class="genre-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_genre.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  

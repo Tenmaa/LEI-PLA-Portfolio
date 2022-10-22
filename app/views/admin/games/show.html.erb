@@ -1,1 +1,25 @@
 <%= render 'layouts/admin_header' %>
+
+<h2>タイトル</h2>
+<p><%= @game.title %></p>
+
+<p><%= image_tag @game.package_image, size: '320x320'   %></p>
+
+<h2>メーカー</h2>
+<p><%= @game.maker %></p>
+
+<h2>発売日</h2>
+<p><%= @game.release_date %></p>
+
+<h2>対応機種</h2>
+<p>
+　<% @game.game_hards.each do |game_hard| %>
+    <%= game_hard.hard_name %>
+  <% end %>
+</p>
+
+<h2>ジャンル</h2>
+<p><%= @game.genre.genre_name %></p>
+
+<h2>AmazonURL</h2>
+<p><%= @game.amazon_url %></p>

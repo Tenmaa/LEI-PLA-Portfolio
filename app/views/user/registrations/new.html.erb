@@ -1,3 +1,5 @@
+<%= render 'layouts/common_header' %>
+
 <div class="col-lg-10 main-top">
   <div class="col-sm-10 col-md-8 col-lg-7 mx-auto m-3 p-5 login-form border-box">
     <div class="row">
@@ -8,7 +10,11 @@
       <%= render "user/shared/error_messages", resource: resource %>
        
         <div class="form_group">
-          <br><%= f.text_field :name, class: "form-control", placeholder: "ユーザー名" %>
+          <br><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザー名"%>
+        </div>
+        
+        <div class="form_group">
+          <br><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
         </div>
         
         <div class="form_group">

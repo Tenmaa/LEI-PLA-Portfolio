@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_18_025040) do
+ActiveRecord::Schema.define(version: 2022_10_22_100811) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,27 @@ ActiveRecord::Schema.define(version: 2022_09_18_025040) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.string "recommend_bgm"
+    t.float "evaluation"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "rakuten_jan_code", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "compatibles", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "game_hard_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_hard_id"], name: "index_compatibles_on_game_hard_id"
+    t.index ["game_id", "game_hard_id"], name: "index_compatibles_on_game_id_and_game_hard_id", unique: true
+    t.index ["game_id"], name: "index_compatibles_on_game_id"
+  end
+
   create_table "game_hards", force: :cascade do |t|
     t.string "hard_name"
     t.datetime "created_at", precision: 6, null: false
@@ -64,10 +85,9 @@ ActiveRecord::Schema.define(version: 2022_09_18_025040) do
     t.date "release_date", null: false
     t.string "bgm"
     t.integer "genre_id", null: false
-    t.integer "game_hard_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_hard_id"], name: "index_games_on_game_hard_id"
+    t.string "amazon_url"
     t.index ["genre_id"], name: "index_games_on_genre_id"
   end
 
@@ -85,12 +105,15 @@ ActiveRecord::Schema.define(version: 2022_09_18_025040) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "games", "game_hards"
+  add_foreign_key "comments", "users"
+  add_foreign_key "compatibles", "game_hards"
+  add_foreign_key "compatibles", "games"
   add_foreign_key "games", "genres"
 end

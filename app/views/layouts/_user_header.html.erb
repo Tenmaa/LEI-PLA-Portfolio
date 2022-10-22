@@ -1,0 +1,30 @@
+<li>
+  <%= link_to user_user_path(current_user.id), class: "nav-link text-dark" do %>
+    <span>マイページ</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to user_games_index_path, class: "nav-link text-dark" do %>
+    <span>ゲーム一覧</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to user_game_hards_index_path, class: "nav-link text-dark" do %>
+    <span>ゲームハード一覧</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to user_genres_index_path, class: "nav-link text-dark" do %>
+    <span>ジャンル一覧</span>
+  <% end %>
+</li>
+
+<li>
+  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
+    <span>ログアウト</span>
+  <% end %>
+</li>
+

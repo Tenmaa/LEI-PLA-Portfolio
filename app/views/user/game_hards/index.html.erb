@@ -1,0 +1,61 @@
+<%= render 'layouts/user_header' %>
+
+<div class="category bg-success">Switch</div>
+  <% @games_swi.each do |game| %>
+    <div class="game_hard-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_game_hard.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">PS5</div>
+  <% @games_ps5.each do |game| %>
+    <div class="game_hard-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_game_hard.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">PS4</div>
+  <% @games_ps4.each do |game| %>
+    <div class="game_hard-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_game_hard.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">PC</div>
+  <% @games_pc.each do |game| %>
+    <div class="game_hard-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_game_hard.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>
+  
+  <div class="category bg-success">3DS</div>
+  <% @games_3ds.each do |game| %>
+    <div class="game_hard-index-game mb-20">
+      <% if game.package_image.attached? %>
+        <%= image_tag game.package_image, size: '150x150', class: "index-img" %>
+      <% else %>
+        <img class="index-img" src="<%= "/images/default_game_hard.jpg" %>" alt="Index image cap">
+      <% end %>
+      <%= link_to(game.title, "/user/games/#{game.id}") %>
+    </div>
+  <% end %>

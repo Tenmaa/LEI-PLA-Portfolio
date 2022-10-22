@@ -1,3 +1,16 @@
 <%= render 'layouts/admin_header' %>
 
-<h2>adminhome</h2>
+<h2>ユーザー</h2>
+
+<table>
+　  <% @users.each do |user| %>
+     <tr>
+        <td><%= link_to admin_users_show_path(user.id) do %><%= user.name %><% end %></td>
+        <td>
+          <% if user.profile_image.attached? %>
+            <%= image_tag user.profile_image, size: '150x150'  %>
+          <% end %>
+        </td>
+     </tr>
+    <% end %>
+</table>

@@ -1,0 +1,31 @@
+<%= render 'layouts/user_header' %>
+
+<h4>ゲーム一覧</h4>
+
+<div id="search-box">
+    <%= form_tag('/user/games/index', method: :get) do %>
+        <%= text_field_tag :good, "",  id: "good_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+    <% end %>
+ </div>
+  
+<table>
+    <%#= @games.count %>
+    
+    <%#= pp @games %>
+　  <% @games.each do |game| %>
+　      <%# 正規表現: 12桁のジャンルコードで006から開始され、次の3桁が505と510を除き、次の3桁は任意の数字で、最後の数字が001-010で終わる。 %>
+　      <%# 505と510はフィギュアなどが該当し、最後の001-010はゲームのジャンルである。 %>
+　      <% if game.books_genre_id.match?(/^006(?!(505|510)).{3}\d{3}(001|002|003|004|005|006|007|008|009|010)\Z/) %>
+         <tr>
+            <td><%= link_to user_game_path(game.jan) do %><%= game.title %><% end %></td>
+            <td>
+                <%= link_to user_game_path(game.books_genre_id) do %>
+                　<% if game.medium_image_url %>
+                    <%= image_tag game.medium_image_url, size: '150x210'   %>
+                　<% end %>
+                <% end %>
+            </td>
+         </tr>
+        <% end %>
+    <% end %>
+</table>

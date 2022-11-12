@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_22_100811) do
+ActiveRecord::Schema.define(version: 2022_10_23_104524) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,9 +57,11 @@ ActiveRecord::Schema.define(version: 2022_10_22_100811) do
     t.string "recommend_bgm"
     t.float "evaluation"
     t.integer "user_id", null: false
+    t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "rakuten_jan_code", null: false
+    t.index ["game_id"], name: "index_comments_on_game_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -82,12 +84,16 @@ ActiveRecord::Schema.define(version: 2022_10_22_100811) do
   create_table "games", force: :cascade do |t|
     t.string "title", null: false
     t.string "maker", null: false
-    t.date "release_date", null: false
+    t.string "release_date", null: false
     t.string "bgm"
-    t.integer "genre_id", null: false
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "amazon_url"
+    t.string "jan"
+    t.string "image_url"
+    t.string "caption"
+    t.string "hardware"
     t.index ["genre_id"], name: "index_games_on_genre_id"
   end
 
@@ -112,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_10_22_100811) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "games"
   add_foreign_key "comments", "users"
   add_foreign_key "compatibles", "game_hards"
   add_foreign_key "compatibles", "games"

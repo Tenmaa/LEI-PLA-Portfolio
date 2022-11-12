@@ -1,16 +1,41 @@
 <%= render 'layouts/admin_header' %>
 
-<h2>ユーザー</h2>
+<h1 class="ml-3 mt-3">ユーザー一覧</h1>
 
-<table>
-　  <% @users.each do |user| %>
-     <tr>
-        <td><%= link_to admin_users_show_path(user.id) do %><%= user.name %><% end %></td>
+<hr style="height: 10px" class="bg-secondary" >
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width: 20%"></th>
+      <th class="text-center" style="width: 40%"><h2>ユーザー名</h2></th>
+      <th class="text-center" style="width: 40%"><h2>メールアドレス</h2></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    　<tr>
         <td>
-          <% if user.profile_image.attached? %>
-            <%= image_tag user.profile_image, size: '150x150'  %>
+          <%= link_to admin_user_path(user.id) do %>
+            <% if user.profile_image.attached? %>
+              <%= image_tag user.profile_image, size: '150x150'  %>
+            <% end %>
           <% end %>
         </td>
-     </tr>
+        <td class="text-center pt-5">
+          <%= link_to admin_user_path(user.id) do %>
+            <h3><%= user.name %></h3>
+          <% end %>
+        </td>
+        <td class="text-center pt-5">
+          <h3><%= user.email %></h3>
+        </td>
+      </tr>
     <% end %>
+  </tbody>    
 </table>
+
+
+
+<%= render 'layouts/footer' %>

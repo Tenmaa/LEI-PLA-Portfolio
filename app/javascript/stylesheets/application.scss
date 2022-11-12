@@ -1,0 +1,14 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+main {
+  min-height: calc(100vh - 118px - 72px);/* window height - header height - footer height */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+footer .row > .col-3:nth-child(2) {
+  white-space: nowrap;
+  word-break: keep-all;
+}

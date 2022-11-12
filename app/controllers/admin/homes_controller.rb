@@ -1,6 +1,6 @@
 class Admin::HomesController < ApplicationController
   def top
-    @users = User.all
+    @users = User.all.filter { |user| user.email != 'guest@example.com' }
   end
 
 private

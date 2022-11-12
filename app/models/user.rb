@@ -4,9 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-    has_many :comments
     has_one_attached :profile_image
     
-    has_many :comments, :dependent => :destroy
+    has_many :comments, dependent: :destroy
+    
+    def guest_email
+     'guest@example.com'
+    end
 
 end

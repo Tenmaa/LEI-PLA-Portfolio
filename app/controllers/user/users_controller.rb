@@ -1,6 +1,7 @@
 class User::UsersController < ApplicationController
   def show
     @user = current_user
+    @user_comments = @user.comments
   end
   
   def edit
@@ -24,6 +25,12 @@ class User::UsersController < ApplicationController
       @user.destroy
       flash[:notice] = 'ユーザーを削除しました。'
       redirect_to :root #削除に成功すればrootページに戻る
+  end
+  
+  def destroy_comment
+    @comment = Comment.find_by(rakuten_jan_code: params[:game_rakuten_jan_code].to_i)
+    @comment.destroy
+    redirect_to user_user_path(current_user.id)
   end
   
   private

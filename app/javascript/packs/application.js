@@ -14,6 +14,11 @@ require('packs/jquery.raty')
 //import 'raty-js'
 //require('raty-js')
 
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application" 
+import '@fortawesome/fontawesome-free/js/all'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

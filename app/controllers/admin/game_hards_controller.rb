@@ -1,4 +1,6 @@
 class Admin::GameHardsController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_my_admin
   def index
     @game_hards = GameHard.all
   end

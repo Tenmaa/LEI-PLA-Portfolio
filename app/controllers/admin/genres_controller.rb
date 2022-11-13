@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_my_admin
  def index
      @genres = Genre.all
  end

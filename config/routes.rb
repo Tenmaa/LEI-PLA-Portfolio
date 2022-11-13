@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'games/show'
   end
   root :to => 'user/homes#top'
+  get 'users' => redirect("/users/sign_up")
   namespace :user do
     get 'homes/top'
   end
@@ -60,7 +61,7 @@ devise_scope :user do
 
     
     resources :games, param: :rakuten_jan_code do
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:index, :create, :destroy]
     end
   
   end 

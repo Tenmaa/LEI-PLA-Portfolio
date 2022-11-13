@@ -28,9 +28,13 @@ class User::UsersController < ApplicationController
   end
   
   def destroy_comment
-    @comment = Comment.find_by(rakuten_jan_code: params[:game_rakuten_jan_code].to_i)
-    @comment.destroy
-    redirect_to user_user_path(current_user.id)
+    @comment = Comment.find(params[:id])
+    if current_user.id == @comment.user_id
+      @comment.destroy
+      redirect_to user_game_path(params[:game_rakuten_jan_code].to_i)
+    else
+      redirect_to root_path
+    end
   end
   
   private

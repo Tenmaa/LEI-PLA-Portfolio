@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :authenticate_my_admin
   def show
     #@user = User.find_by(id: params[:id])  
     @user = User.find(params[:id])  
@@ -14,7 +16,7 @@ class Admin::UsersController < ApplicationController
   end
   
   def destroy_comment
-    @comment = Comment.find_by(rakuten_jan_code: params[:game_rakuten_jan_code].to_i)
+    @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to admin_user_path(@comment.user_id)
 

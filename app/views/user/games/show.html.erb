@@ -49,6 +49,14 @@
 <div class="text-center">
   <h3>レビュー投稿<h3>
   
+  <% if @comment.errors.any? %>
+    <%= @comment.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <h4><%= message %></h4>
+      <% end %>
+    </ul>
+  <% end %>
 
 <%= form_with model: @comment,url: user_game_comments_path(@game.jan), method: :post do |f| %>
   <h4>コメント</h4>

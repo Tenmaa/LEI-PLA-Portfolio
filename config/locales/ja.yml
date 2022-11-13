@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー 
+    attributes:
+      user: 
+        name: ユーザー
+        email: Eメール
+        password: パスワード
+        profile_image: ユーザー画像
+      comment:
+        recommend_bgm: おすすめbgm
+        comment: コメント
+        evaluation: 星評価
+  errors:
+    messages:
+      not_saved: 正常に保存できませんでした
+
+

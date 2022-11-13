@@ -26,11 +26,23 @@ class User::CommentsController < ApplicationController
       render 'user/games/show'
     end
   end
+  
+  def index
+    redirect_to user_game_path(params[:game_rakuten_jan_code])
+  end
 
   def destroy
-    @comment = Comment.find_by(rakuten_jan_code: params[:game_rakuten_jan_code].to_i)
-    @comment.destroy
-    redirect_to user_game_path(params[:game_rakuten_jan_code].to_i)
+    #@comment = Comment.find_by(rakuten_jan_code: params[:game_rakuten_jan_code].to_i)
+    @comment = Comment.find(params[:id])
+    
+    if current_user.id == @comment.user_id
+      @comment.destroy
+      redirect_to user_game_path(params[:game_rakuten_jan_code].to_i)
+      
+    else
+      redirect_to root_path
+    end
+    
   end
 
   private

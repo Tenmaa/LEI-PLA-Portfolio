@@ -7,6 +7,7 @@ class User::CommentsController < ApplicationController
       @game.maker = result['label']
       @game.release_date = result['salesDate']
       @game.image_url = result['largeImageUrl'].gsub('?_ex=200x200', '')
+      binding.irb
       @game.caption = result.item_caption
       @game.hardware = result.hardware
       @game.save!

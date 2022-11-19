@@ -1,5 +1,5 @@
 class ChangeCaptionToGames < ActiveRecord::Migration[6.1]
-    def up
+  def up
     change_table :games do |t|
       t.change :caption, :text
     end
